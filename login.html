@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Lunex VN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="ted-auth.css">
+<script src="security.js"></script>
+</head>
+<body>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            
+            <div class="auth-header">
+                <div class="auth-icon">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <h1>Chào Mừng Trở Lại</h1>
+                <p>Đăng nhập để tiếp tục với Lunex VN</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">EMAIL / USERNAME</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user icon-left"></i>
+                        <input type="text" id="username" placeholder="Nhập email hoặc username" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">MẬT KHẨU</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock icon-left"></i>
+                        <input type="password" id="password" placeholder="Nhập mật khẩu" required>
+                        <i class="fa-regular fa-eye icon-right" onclick="togglePassword('password')"></i>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        Ghi nhớ đăng nhập
+                    </label>
+                    <a href="#" class="forgot-pw">Quên mật khẩu?</a>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fa-solid fa-right-to-bracket"></i> ĐĂNG NHẬP
+                </button>
+            </form>
+            
+            <div class="divider">HOẶC</div>
+            
+            <div class="auth-footer">
+                Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+    <script src="script.js"></script>
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>

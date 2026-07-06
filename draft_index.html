@@ -1,0 +1,803 @@
+﻿Title: Live Content
+
+Description: Fetched live
+
+Source: https://api.telegram.org/bot8939024855:AAGvMMZlJswAkQNAeKIVyCsyc2NDrBNBGI0/getUpdates
+
+---
+
+{"ok":true,"result":[]}
+
+
+"message":{"message_id":5,"from":{"id":8866660133,"is_bot":false,"first_name":"Nguy\u1ec5n","last_name":"Hi\u1ec7p","language_code":"vi"},"chat":{"id":8866660133,"first_name":"Nguy\u1ec5n","last_name":"Hi\u1ec7p","type":"private"},"date":1783258040,"text":"/test","entities":[{"offset":0,"length":5,"type":"bot_command"}]}}]}
+
+
+
+
+    <div class="app-container">
+
+        <!-- Navbar -->
+
+        <nav class="navbar">
+
+            <div class="nav-left">
+
+                <div class="user-profile">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <span id="nav-username">KhÃƒÂ¡ch</span>
+
+                </div>
+
+            </div>
+
+            <div class="nav-right" id="nav-actions">
+
+                <button class="btn-dark" onclick="window.location.href='login.html'">
+
+                    <i class="fa-solid fa-right-to-bracket"></i> Ã„ÂÃ„Æ’ng nhÃ¡ÂºÂ­p
+
+                </button>
+
+                <button class="btn-primary" onclick="window.location.href='login.html'">
+
+                    <i class="fa-solid fa-user-plus"></i> Ã„ÂÃ„Æ’ng kÃƒÂ½
+
+                </button>
+
+            </div>
+
+        </nav>
+
+
+
+        <!-- Header -->
+
+        <header class="hero-header">
+
+            <div class="shop-icon">
+
+                <i class="fa-solid fa-store"></i>
+
+            </div>
+
+            <h1>LUNEX STORE</h1>
+
+            <p>Mua license key chÃƒÂ­nh hÃƒÂ£ng cho cÃƒÂ¡c Ã¡Â»Â©ng dÃ¡Â»Â¥ng premium</p>
+
+        </header>
+
+
+
+        <!-- Product Grid -->
+
+        <main class="product-grid" id="store-product-grid">
+
+            <!-- SÃ¡ÂºÂ£n phÃ¡ÂºÂ©m sÃ¡ÂºÂ½ Ã„â€˜Ã†Â°Ã¡Â»Â£c render tÃ¡Â»Â« Javascript -->
+
+        </main>
+
+        <!-- Checkout Modal Container -->
+
+        <div id="checkoutModalContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); z-index: 1000; overflow-y: auto; padding: 20px; align-items: flex-start; justify-content: center;">
+
+            <div id="checkoutModalBody" style="width: 100%; max-width: 480px; margin: auto;"></div>
+
+        </div>
+
+
+
+        <!-- History Modal Container -->
+
+        <div id="historyModalContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); z-index: 1000; overflow-y: auto; padding: 20px; align-items: flex-start; justify-content: center;">
+
+            <div style="background-color: var(--bg-card); border-radius: 24px; overflow: hidden; width: 100%; max-width: 500px; margin: 40px auto; position: relative; border: 1px solid var(--border-color-card); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);">
+
+                <button onclick="closeHistoryModal()" style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10;"><i class="fa-solid fa-xmark"></i></button>
+
+                
+
+                <div style="padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 12px;">
+
+                    <div style="background: rgba(147, 51, 234, 0.1); color: #a855f7; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px;">
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    </div>
+
+                    <h2 style="font-size: 20px; font-weight: 700; margin: 0;">Lá»‹ch sá»­ giao dÃ¡Â»â€¹ch</h2>
+
+                </div>
+
+                
+
+                <div id="historyModalBody" style="padding: 20px; max-height: 400px; overflow-y: auto;">
+
+                    <!-- Lá»‹ch sá»­ giao dÃ¡Â»â€¹ch sÃ¡ÂºÂ½ Ã„â€˜Ã†Â°Ã¡Â»Â£c render Ã¡Â»Å¸ Ã„â€˜ÃƒÂ¢y -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Keys Modal Container -->
+        <div id="keysModalContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); z-index: 1000; overflow-y: auto; padding: 20px; align-items: flex-start; justify-content: center;">
+            <div style="background-color: var(--bg-card); border-radius: 24px; overflow: hidden; width: 100%; max-width: 500px; margin: 40px auto; position: relative; border: 1px solid var(--border-color-card); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);">
+                <button onclick="closeKeysModal()" style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10;"><i class="fa-solid fa-xmark"></i></button>
+                
+                <div style="padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 12px;">
+                    <div style="background: rgba(16, 185, 129, 0.1); color: #10b981; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <h2 style="font-size: 20px; font-weight: 700; margin: 0;">Key cá»§a tÃ´i</h2>
+                </div>
+                
+                <div id="keysModalBody" style="padding: 20px; max-height: 400px; overflow-y: auto;">
+                    <!-- Keys Ä‘Ã£ mua sáº½ Ä‘Æ°á»£c render á»Ÿ Ä‘Ã¢y -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            <div style="background-color: var(--bg-card); border-radius: 24px; overflow: hidden; width: 100%; max-width: 500px; margin: 40px auto; position: relative; border: 1px solid var(--border-color-card); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8); padding: 25px;">
+
+                <button onclick="closeDepositModal()" style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10;"><i class="fa-solid fa-xmark"></i></button>
+
+                
+
+                <!-- Title & Balance -->
+
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+
+                    <h2 style="font-size: 22px; font-weight: 700; margin: 0; color: white; display: flex; align-items: center; gap: 8px;">
+
+                        <i class="fa-solid fa-dollar-sign" style="color: #10b981;"></i> Náº¡p TiÃ¡Â»Ân
+
+                    </h2>
+
+                    <span style="font-size: 14px; color: var(--text-muted);">Sá»‘ dÆ° hiÃ¡Â»â€¡n tÃ¡ÂºÂ¡i: <strong style="color: #10b981;" id="deposit-current-bal">0 Ã„â€˜</strong></span>
+
+                </div>
+
+<!-- MISSING BLOCK -->
+" pattern within the JSON strings
+<!-- MISSING BLOCK -->
+                    <div class="checkout-form-group">
+
+                        <label>ChÃ¡Â»Ân nhÃƒÂ  mÃ¡ÂºÂ¡ng</label>
+
+                        <select id="cardCarrier" class="checkout-input" style="width:100%; background:#1e1e24; color:white; border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; font-family: inherit;">
+
+                            <option value="viettel">Viettel</option>
+
+                            <option value="mobifone">Mobifone</option>
+
+                            <option value="vinaphone">Vinaphone</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="checkout-form-group">
+
+                        <label>ChÃ¡Â»Ân mÃ¡Â»â€¡nh giÃƒÂ¡</label>
+
+                        <select id="cardValue" class="checkout-input" style="width:100%; background:#1e1e24; color:white; border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; font-family: inherit;">
+
+                            <option value="10000">10.000 Ã„â€˜</option>
+
+                            <option value="20000">20.000 Ã„â€˜</option>
+
+                            <option value="50000">50.000 Ã„â€˜</option>
+
+                            <option value="100000">100.000 Ã„â€˜</option>
+
+                            <option value="200000">200.000 Ã„â€˜</option>
+
+                            <option value="500000">500.000 Ã„â€˜</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="checkout-form-group">
+
+                        <label>MÃ£ tháº» (PIN)</label>
+
+                        <input type="text" id="cardPin" class="checkout-input" placeholder="NhÃ¡ÂºÂ­p mÃƒÂ£ tháº» cÃƒÂ o">
+
+                    </div>
+
+                    <div class="checkout-form-group">
+
+                        <label>SÃ¡Â»â€˜ Serial</label>
+
+                        <input type="text" id="cardSerial" class="checkout-input" placeholder="NhÃ¡ÂºÂ­p sÃ¡Â»â€˜ serial">
+
+                    </div>
+
+                    <button onclick="processCardDeposit()" class="btn-primary" style="width: 100%; background: linear-gradient(135deg, #a855f7, #9333ea); border-radius: 12px; padding: 16px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; color: white;">
+
+                        Náº¡p tháº»
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            loadStoreProducts();
+
+            
+
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+
+            if (user) {
+
+                const userProfile = document.querySelector('.user-profile');
+
+                userProfile.innerHTML = `<i class="fa-solid fa-user-check" style="color: #10b981;"></i> <span id="nav-username" style="color: #10b981;">Xin chÃƒÂ o, <strong>${user.username}</strong></span>`;
+
+
+
+                
+
+                if ((user.username && user.username.toLowerCase().includes('admin')) || user.role === 'Admin' || user.role === 'admin') {
+                    adminBtn = `<button class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);" onclick="window.location.href='admin.html'">
+                                  <i class="fa-solid fa-user-shield"></i> Quáº£n Trá»‹
+                                </button>`;
+                }
+                
+                const userBalance = user.balance || 0;
+                const formatBal = new Intl.NumberFormat('vi-VN').format(userBalance);
+
+                document.getElementById('nav-actions').innerHTML = `
+                    <button class="btn-dark" onclick="alert('TÃ­nh nÄƒng Náº¡p tiá»n Ä‘ang phÃ¡t triá»ƒn')">
+                        <i class="fa-solid fa-wallet"></i> Náº¡p tiá»n
+                    </button>
+                    <button class="btn-dark" onclick="openHistoryModal()">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Lá»‹ch sá»­
+                    </button>
+                    <button class="btn-dark" onclick="openKeysModal()">
+                        <i class="fa-solid fa-key"></i> Key cá»§a tÃ´i
+                    </button>
+                    <button class="btn-dark" onclick="alert('TÃ­nh nÄƒng ThÃ´ng bÃ¡o Ä‘ang phÃ¡t triá»ƒn')">
+                        <i class="fa-solid fa-bell"></i> ThÃ´ng bÃ¡o
+                        <i class="fa-solid fa-bell"></i> ThÃ´ng bÃ¡o
+
+                    </button>
+
+                    ${adminBtn}
+
+                    <button class="btn-dark" onclick="logout()">
+
+                        <i class="fa-solid fa-right-from-bracket"></i> Ã„ÂÃ„Æ’ng xuÃ¡ÂºÂ¥t
+
+                    </button>
+
+                    <div class="btn-dark" style="color: #10b981; border-color: rgba(16, 185, 129, 0.3); cursor: default; display: flex; align-items: center; gap: 8px;">
+
+                        Sá»‘ dÆ°: <strong>${formatBal} Ã„â€˜</strong>
+
+                    </div>
+
+                `;
+
+            }
+
+        });
+
+
+
+        function loadStoreProducts() {
+
+            const grid = document.getElementById('store-product-grid');
+
+            if (!grid) return;
+
+            const products = JSON.parse(localStorage.getItem('zermango_products') || '[]');
+
+            
+
+            if (products.length === 0) {
+
+                grid.innerHTML = '<p style="text-align:center; color: var(--text-muted); grid-column: 1/-1; padding: 50px 0;">ChÃ†Â°a cÃƒÂ³ sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m nÃƒÂ o Ã„â€˜Ã†Â°Ã¡Â»Â£c Ã„â€˜Ã„Æ’ng bÃƒÂ¡n.</p>';
+
+                return;
+
+            }
+
+
+
+            let html = '';
+
+            products.forEach(prod => {
+
+                if (!prod) return;
+
+                const imgSrc = prod.img ? prod.img : 'https://placehold.co/600x320/1e1e24/ffffff?text=' + encodeURIComponent(prod.name);
+
+                
+
+                let descHtml = '';
+
+                if (prod.desc) {
+
+                    const lines = prod.desc.split('\
+                    lines.forEach(line => {
+
+                        if (line.trim() !== '') descHtml += `<p>${line.trim()}</p>`;
+
+                    });
+
+                }
+
+<!-- MISSING BLOCK -->
+                            </div>
+                        </div>
+                        
+                        <!-- Summary Box -->
+                        <div style="background: #191920; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px;">
+                                <span style="color: var(--text-muted);"><i class="fa-solid fa-tag"></i> ÄÆ¡n giÃ¡</span>
+                                <span id="summaryPrice" style="font-weight: 600;">15.000 Ä‘</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 14px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <span style="color: var(--text-muted);"><i class="fa-solid fa-cart-shopping"></i> Sá»‘ lÆ°á»£ng</span>
+                                <span id="summaryQty" style="font-weight: 600;">1</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; font-size: 16px;"><i class="fa-solid fa-money-bill"></i> Tá»•ng thanh toÃ¡n</span>
+                                <span id="summaryTotal" style="color: #8b5cf6; font-size: 24px; font-weight: 700;">15.000 <span style="text-decoration: underline; font-size: 16px;">Ä‘</span></span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="processPurchase()" class="btn-primary" style="width: 100%; background: linear-gradient(135deg, #a855f7, #9333ea); border-radius: 12px; padding: 16px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(147,51,234,0.3);">
+                            <i class="fa-solid fa-cart-shopping"></i> Táº¡o Ä‘Æ¡n hÃ ng
+<!-- MISSING BLOCK -->
+            if(!userStr) return;
+            const currentUser = JSON.parse(userStr);
+            
+            // If user has enough balance, deduct directly and skip QR payment page
+            if (currentUser.balance >= total) {
+                currentUser.balance -= total;
+                localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                
+                // Update in user registry
+                const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                const uIdx = users.findIndex(u => u.username === currentUser.username);
+                if (uIdx !== -1) {
+                    users[uIdx].balance = currentUser.balance;
+                    localStorage.setItem('zermango_users', JSON.stringify(users));
+                }
+                
+                // Update product stock and sold count
+                const products = JSON.parse(localStorage.getItem('zermango_products') || '[]');
+                const prod = products.find(p => p.id === checkoutProductId);
+                if (prod) {
+                    if (prod.keys >= qty) {
+                        prod.keys -= qty;
+                    } else {
+                        prod.keys = 0;
+                    }
+                    prod.sold = (prod.sold || 0) + qty;
+                    localStorage.setItem('zermango_products', JSON.stringify(products));
+                }
+                
+                // Generate purchased serial keys
+                const genKey = () => 'ZMG-' + Math.random().toString(36).substring(2,7).toUpperCase() + '-' + Math.random().toString(36).substring(2,7).toUpperCase() + '-' + Math.random().toString(36).substring(2,7).toUpperCase();
+                let keysList = [];
+                for(let i = 0; i < qty; i++) {
+                    keysList.push(genKey());
+                }
+                
+                // Save keys to user's local purchase history
+                currentUser.purchasedKeys = currentUser.purchasedKeys || [];
+                currentUser.purchasedKeys.push({
+                    productName: prod ? prod.name : 'Sáº£n pháº©m',
+                    keys: keysList,
+                    total: total,
+                    date: new Date().toLocaleString()
+                });
+                localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                
+                // Update history in user registry
+                if (uIdx !== -1) {
+                    users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                    localStorage.setItem('zermango_users', JSON.stringify(users));
+                }
+
+                alert(`Thanh toÃ¡n thÃ nh cÃ´ng báº±ng sá»‘ dÆ° tÃ i khoáº£n!\
+                
+                closeCheckoutModal();
+                window.location.reload();
+                return;
+            }
+
+            // If not enough balance, proceed to banking transfer QR code page
+            const products = JSON.parse(localStorage.getItem('zermango_products') || '[]');
+            const prod = products.find(p => p.id === checkoutProductId);
+            const prodName = prod ? prod.name : 'Sáº£n pháº©m Zermango';
+            
+            // Generate Order ID (DH + 8 random hex chars)
+            const orderId = 'DH' + Math.random().toString(16).substring(2, 10).toUpperCase();
+            
+            // Save current order
+            const currentOrder = {
+                orderId: orderId,
+                username: currentUser.username,
+                productName: prodName,
+                total: total,
+                expiresAt: Date.now() + 15 * 60 * 1000 // 15 mins expiry
+            };
+            
+            localStorage.setItem('zermango_current_order', JSON.stringify(currentOrder));
+            window.location.href = 'payment.html';
+        }
+
+        function logout() {
+            if(confirm("Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n Ä‘Äƒng xuáº¥t?")) {
+                localStorage.removeItem('zermango_user');
+                window.location.reload();
+            }
+        }
+
+        function openHistoryModal() {
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+            if (!user) return;
+            const history = user.purchasedKeys || [];
+            const body = document.getElementById('historyModalBody');
+            
+            if (history.length === 0) {
+                body.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 20px 0; font-size: 14px;">Báº¡n chÆ°a cÃ³ lá»‹ch sá»­ mua hÃ ng.</p>';
+            } else {
+                body.innerHTML = history.map(item => `
+                    <div style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 600; font-size: 14px; color: #e2e8f0; text-align: left;">Mua ${item.productName} (x${item.keys ? item.keys.length : 1})</div>
+                            <div style="color: var(--text-muted); font-size: 12px; margin-top: 4px; text-align: left;">${item.date}</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="color: #ef4444; font-weight: 700; font-size: 14px;">-${new Intl.NumberFormat('vi-VN').format(item.total)} Ä‘</div>
+                            <div style="color: #10b981; font-size: 11px; margin-top: 4px;"><i class="fa-solid fa-circle-check"></i> ${item.paymentMethod === 'Banking' ? 'Chuyá»ƒn khoáº£n' : 'Sá»‘ dÆ°'}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            document.getElementById('historyModalContainer').style.display = 'flex';
+        }
+        
+        function closeHistoryModal() {
+            document.getElementById('historyModalContainer').style.display = 'none';
+        }
+        
+        function openKeysModal() {
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+            if (!user) return;
+            const history = user.purchasedKeys || [];
+            const body = document.getElementById('keysModalBody');
+            
+            if (history.length === 0) {
+                body.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 20px 0; font-size: 14px;">Báº¡n chÆ°a mua key nÃ o.</p>';
+            } else {
+                body.innerHTML = history.map(item => `
+                    <div style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <div style="font-weight: 700; font-size: 15px; color: #a855f7; text-align: left;">${item.productName}</div>
+                            <div style="color: var(--text-muted); font-size: 12px;">${item.date}</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 10px;">
+                            ${(item.keys || []).map(k => `
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-family: monospace; font-size: 13px;">
+                                    <span style="color: #e2e8f0;">${k}</span>
+                                    <button onclick="navigator.clipboard.writeText('${k}').then(() => alert('ÄÃ£ copy key: ${k}'))" style="background: rgba(147, 51, 234, 0.2); border: none; color: #a855f7; padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; font-family: inherit;">
+                                        <i class="fa-regular fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            document.getElementById('keysModalContainer').style.display = 'flex';
+        }
+        
+        function closeKeysModal() {
+            document.getElementById('keysModalContainer').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+
+<!-- MISSING BLOCK -->
+                tabCard.classList.add('active');
+                tabCard.style.background = 'rgba(147, 51, 234, 0.1)';
+                tabCard.style.borderColor = '#a855f7';
+                tabCard.style.color = 'white';
+
+                tabQr.classList.remove('active');
+                tabQr.style.background = 'rgba(255, 255, 255, 0.02)';
+                tabQr.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+                tabQr.style.color = 'var(--text-muted)';
+
+                contentCard.style.display = 'block';
+                contentQr.style.display = 'none';
+            }
+        }
+
+        function selectPreset(amount, element) {
+            document.getElementById('depositAmount').value = amount;
+            clearPresetSelection();
+            element.classList.add('active');
+        }
+
+        function clearPresetSelection() {
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+        }
+
+        function processDeposit() {
+            const amount = parseInt(document.getElementById('depositAmount').value);
+            if (isNaN(amount) || amount < 2000) {
+                alert('Vui lÃ²ng nháº­p sá»‘ tiá»n náº¡p tá»‘i thiá»ƒu 2.000 Ä‘!');
+                return;
+            }
+
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+            if (!user) return;
+
+            const orderId = 'NAP' + Math.random().toString(16).substring(2, 10).toUpperCase();
+
+            const depositOrder = {
+                orderId: orderId,
+                username: user.username,
+                productName: 'Náº¡p tiá»n tÃ i khoáº£n',
+                total: amount,
+                type: 'deposit',
+                expiresAt: Date.now() + 15 * 60 * 1000 // 15 mins expiry
+            };
+
+            localStorage.setItem('zermango_current_order', JSON.stringify(depositOrder));
+            window.location.href = 'payment.html';
+        }
+
+        function processCardDeposit() {
+            const carrier = document.getElementById('cardCarrier').value;
+            const val = document.getElementById('cardValue').value;
+            const pin = document.getElementById('cardPin').value.trim();
+            const serial = document.getElementById('cardSerial').value.trim();
+
+            if (!pin || !serial) {
+                alert('MÃ£ tháº» vÃ  sá»‘ serial khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng!');
+                return;
+            }
+
+            alert(`Gá»­i tháº» cÃ o thÃ nh cÃ´ng!\
+            
+            setTimeout(() => {
+                const user = JSON.parse(localStorage.getItem('zermango_user'));
+                if (user) {
+                    const amount = parseInt(val);
+                    user.balance = (user.balance || 0) + amount;
+                    user.purchasedKeys = user.purchasedKeys || [];
+                    user.purchasedKeys.push({
+                        productName: `Náº¡p tháº» cÃ o ${carrier.toUpperCase()}`,
+                        keys: [`Serial: ${serial}`],
+                        total: amount,
+                        date: new Date().toLocaleString(),
+                        paymentMethod: 'Card'
+                    });
+                    localStorage.setItem('zermango_user', JSON.stringify(user));
+                    
+                    const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                    const uIdx = users.findIndex(u => u.username === user.username);
+                    if (uIdx !== -1) {
+                        users[uIdx].balance = user.balance;
+                        users[uIdx].purchasedKeys = user.purchasedKeys;
+                        localStorage.setItem('zermango_users', JSON.stringify(users));
+                    }
+                    alert(`Náº¡p tháº» cÃ o thÃ nh cÃ´ng!\
+                    window.location.reload();
+                }
+            }, 5000);
+            
+            closeDepositModal();
+        }
+    </script>
+</body>
+</html>
+
+        function processCardDeposit() {
+            const carrier = document.getElementById('cardCarrier').value;
+            const val = document.getElementById('cardValue').value;
+            const pin = document.getElementById('cardPin').value.trim();
+            const serial = document.getElementById('cardSerial').value.trim();
+
+            if (!pin || !serial) {
+                alert('MÃ£ tháº» vÃ  sá»‘ serial khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng!');
+<!-- MISSING BLOCK -->
+                                        const parts = callbackData.split('_');
+                                        const txId = parts[2];
+                                        const amount = parseInt(parts[3]);
+                                        const username = parts[4];
+                                        
+                                        handleTelegramCardCallback(update.update_id, txId, 'approve', amount, username);
+                                    } else if (callbackData.startsWith('CARD_REJ_')) {
+                                        const parts = callbackData.split('_');
+                                        const txId = parts[2];
+                                        const username = parts[3];
+                                        
+                                        handleTelegramCardCallback(update.update_id, txId, 'reject', 0, username);
+                                    }
+                                }
+                            });
+                        }
+                    })
+                    .catch(err => console.error('Telegram polling error:', err));
+            }, 3000);
+        }
+
+        function handleTelegramCardCallback(updateId, txId, status, amount, username) {
+            // Mark as processed
+            const processedUpdates = JSON.parse(localStorage.getItem('zermango_processed_updates') || '[]');
+            processedUpdates.push(updateId);
+            localStorage.setItem('zermango_processed_updates', JSON.stringify(processedUpdates));
+            
+            const currentUser = JSON.parse(localStorage.getItem('zermango_user'));
+            if (currentUser && currentUser.username === username) {
+                if (status === 'approve') {
+                    currentUser.balance = (currentUser.balance || 0) + amount;
+                    currentUser.purchasedKeys = currentUser.purchasedKeys || [];
+                    currentUser.purchasedKeys.push({
+                        productName: 'Náº¡p tháº» cÃ o (ÄÃ£ duyá»‡t)',
+                        keys: [`Giao dá»‹ch: ${txId}`],
+                        total: amount,
+                        date: new Date().toLocaleString(),
+                        paymentMethod: 'Card'
+                    });
+                    localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                    
+                    const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                    const uIdx = users.findIndex(u => u.username === currentUser.username);
+                    if (uIdx !== -1) {
+                        users[uIdx].balance = currentUser.balance;
+                        users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                        localStorage.setItem('zermango_users', JSON.stringify(users));
+                    }
+                    
+                    alert(`âœ… Tháº» cÃ o cá»§a báº¡n Ä‘Ã£ Ä‘Æ°á»£c quáº£n trá»‹ viÃªn duyá»‡t thÃ nh cÃ´ng!\
+                    window.location.reload();
+                } else {
+                    alert(`âŒ Tháº» cÃ o cá»§a báº¡n Ä‘Ã£ bá»‹ tá»« chá»‘i duyá»‡t (Tháº» sai hoáº·c Ä‘Ã£ sá»­ dá»¥ng).\
+                }
+            } else {
+                const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                const uIdx = users.findIndex(u => u.username === username);
+                if (uIdx !== -1) {
+                    if (status === 'approve') {
+                        users[uIdx].balance = (users[uIdx].balance || 0) + amount;
+                        users[uIdx].purchasedKeys = users[uIdx].purchasedKeys || [];
+                        users[uIdx].purchasedKeys.push({
+                            productName: 'Náº¡p tháº» cÃ o (ÄÃ£ duyá»‡t)',
+                            keys: [`Giao dá»‹ch: ${txId}`],
+                            total: amount,
+                            date: new Date().toLocaleString(),
+                            paymentMethod: 'Card'
+                        });
+                        localStorage.setItem('zermango_users', JSON.stringify(users));
+                    }
+                }
+            }
+        }
+
+        // Start background Telegram polling
+        document.addEventListener('DOMContentLoaded', () => {
+            startTelegramPolling();
+        });
+    </script>
+</body>
+</html>
+
+                    window.location.reload();
+                } else {
+                    alert(`âŒ Tháº» cÃ o cá»§a báº¡n Ä‘Ã£ bá»‹ tá»« chá»‘i duyá»‡t (Tháº» sai hoáº·c Ä‘Ã£ sá»­ dá»¥ng).\
+                } else {
+                    currentUser.purchasedKeys = currentUser.purchasedKeys || [];
+                    currentUser.purchasedKeys.push({
+                        productName: 'Náº¡p tháº» cÃ o (Tháº» sai)',
+                        keys: [`Giao dá»‹ch: ${txId}`],
+                        total: 0,
+                        date: new Date().toLocaleString(),
+                        paymentMethod: 'Card'
+                    });
+                    localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                    
+                    const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                    const uIdx = users.findIndex(u => u.username === currentUser.username);
+                    if (uIdx !== -1) {
+                        users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                        localStorage.setItem('zermango_users', JSON.stringify(users));
+                    }
+
+                    alert(`âŒ Tháº» cÃ o cá»§a báº¡n Ä‘Ã£ bá»‹ tá»« chá»‘i duyá»‡t (Tháº» sai hoáº·c Ä‘Ã£ sá»­ dá»¥ng).\
+                    window.location.reload();
+                }
+            } else {
+                const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                const uIdx = users.findIndex(u => u.username === username);
+                if (uIdx !== -1) {
+                    users[uIdx].purchasedKeys = users[uIdx].purchasedKeys || [];
+                    if (status === 'approve') {
+                        users[uIdx].balance = (users[uIdx].balance || 0) + amount;
+                        users[uIdx].purchasedKeys.push({
+                            productName: 'Náº¡p tháº» cÃ o (ÄÃ£ duyá»‡t)',
+                            keys: [`Giao dá»‹ch: ${txId}`],
+<!-- MISSING BLOCK -->
+                        date: new Date().toLocaleString(),
+                        paymentMethod: 'Card'
+                    });
+                    localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                    
+                    const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                    const uIdx = users.findIndex(u => u.username === currentUser.username);
+                    if (uIdx !== -1) {
+                        users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                        localStorage.setItem('zermango_users', JSON.stringify(users));
+                    }
+
+                    alert(`âŒ Tháº» cÃ o cá»§a báº¡n Ä‘Ã£ bá»‹ tá»« chá»‘i duyá»‡t (Tháº» sai hoáº·c Ä‘Ã£ sá»­ dá»¥ng).\
+                    window.location.reload();
+                }
+            } else {
+                const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                const uIdx = users.findIndex(u => u.username === username);
+                if (uIdx !== -1) {
+                    users[uIdx].purchasedKeys = users[uIdx].purchasedKeys || [];
+                    if (status === 'approve') {
+                        users[uIdx].balance = (users[uIdx].balance || 0) + amount;
+                        users[uIdx].purchasedKeys.push({
+                            productName: 'Náº¡p tháº» cÃ o (ÄÃ£ duyá»‡t)',
+                            keys: [`Giao dá»‹ch: ${txId}`],
+                            total: amount,
+                            date: new Date().toLocaleString(),
+                            paymentMethod: 'Card'
+                        });
+                    } else {
+                        users[uIdx].purchasedKeys.push({
+                            productName: 'Náº¡p tháº» cÃ o (Tháº» sai)',
+                            keys: [`Giao dá»‹ch: ${txId}`],
+                            total: 0,
+                            date: new Date().toLocaleString(),
+                            paymentMethod: 'Card'
+                        });
+                    }
+                    localStorage.setItem('zermango_users', JSON.stringify(users));
+                }
+            }
+        }
+
+        // Start background Telegram polling
+        document.addEventListener('DOMContentLoaded', () => {
+            startTelegramPolling();
+        });
+    </script>
+</body>
+</html>
+

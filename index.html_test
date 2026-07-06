@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUNEX STORE - License Key Chính Hãng</title>
+    <!-- Use FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<script src="security.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="nav-left">
+                <div class="user-profile">
+                    <i class="fa-solid fa-user"></i>
+                    <span id="nav-username">Khách</span>
+                </div>
+            </div>
+            <div class="nav-right" id="nav-actions">
+                <button class="btn-dark" onclick="window.location.href='login.html'">
+                    <i class="fa-solid fa-right-to-bracket"></i> ĐĒng nhập
+                </button>
+                <button class="btn-primary" onclick="window.location.href='login.html'">
+                    <i class="fa-solid fa-user-plus"></i> ĐĒng ký
+                </button>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="hero-header">
+            <div class="shop-icon">
+                <i class="fa-solid fa-store"></i>
+            </div>
+            <h1>LUNEX STORE</h1>
+            <p>Mua license key chính hãng cho các ứng dụng premium</p>
+        </header>
+
+        <!-- Product Grid -->
+        <main class="product-grid" id="store-product-grid">
+            <!-- Sản phẩm sẽ �ược render từ Javascript -->
+        </main>
+        <!-- Checkout Modal Container -->
+        <div id="checkoutModalContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); z-index: 1000; overflow-y: auto; padding: 20px; align-items: flex-start; justify-content: center;">
+            <div id="checkoutModalBody" style="width: 100%; max-width: 480px; margin: auto;"></div>
+        </div>
+
+        <!-- History Modal Container -->
+        <div id="historyModalContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); z-index: 1000; overflow-y: auto; padding: 20px; align-items: flex-start; justify-content: center;">
+            <div style="background-color: var(--bg-card); border-radius: 24px; overflow: hidden; width: 100%; max-width: 500px; margin: 40px auto; position: relative; border: 1px solid var(--border-color-card); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);">
+                <button onclick="closeHistoryModal()" style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10;"><i class="fa-solid fa-xmark"></i></button>
+                
+                <div style="padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 12px;">
+                    <div style="background: rgba(147, 51, 234, 0.1); color: #a855f7; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h2 style="font-size: 20px; font-weight: 700; margin: 0;">L�9ch sử giao d�9ch</h2>
+                </div>
+                
+                <div id="historyModalBody" style="padding: 20px; max-height: 400px; overflow-y: auto;">
+                    <!-- L�9ch sử giao d�9ch sẽ �ược render �x �ây -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Keys Modal Container -->
+        <div id="keysModalContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); z-index: 1000; overflow-y: auto; padding: 20px; align-items: flex-start; justify-content: center;">
+            <div style="background-color: var(--bg-card); border-radius: 24px; overflow: hidden; width: 100%; max-width: 500px; margin: 40px auto; position: relative; border: 1px solid var(--border-color-card); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);">
+                <button onclick="closeKeysModal()" style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10;"><i class="fa-solid fa-xmark"></i></button>
+                
+                <div style="padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 12px;">
+                    <div style="background: rgba(16, 185, 129, 0.1); color: #10b981; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px;">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <h2 style="font-size: 20px; font-weight: 700; margin: 0;">Key của tôi</h2>
+                </div>
+                
+                <div id="keysModalBody" style="padding: 20px; max-height: 400px; overflow-y: auto;">
+                    <!-- Keys �ã mua sẽ �ược render �x �ây -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Deposit Modal Container -->
+        <div id="depositModalContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); z-index: 1000; overflow-y: auto; padding: 20px; align-items: flex-start; justify-content: center;">
+            <div style="background-color: var(--bg-card); border-radius: 24px; overflow: hidden; width: 100%; max-width: 500px; margin: 40px auto; position: relative; border: 1px solid var(--border-color-card); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8); padding: 25px;">
+                <button onclick="closeDepositModal()" style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10;"><i class="fa-solid fa-xmark"></i></button>
+                
+                <!-- Title & Balance -->
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                    <h2 style="font-size: 22px; font-weight: 700; margin: 0; color: white; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-dollar-sign" style="color: #10b981;"></i> Nạp Tiền
+                    </h2>
+                    <span style="font-size: 14px; color: var(--text-muted);">S� dư hi�!n tại: <strong style="color: #10b981;" id="deposit-current-bal">0 �</strong></span>
+                </div>
+                
+                <!-- Tabs -->
+                <div style="display: flex; gap: 10px; margin-bottom: 25px;">
+                    <button class="deposit-tab active" onclick="switchDepositTab('qr')" id="tab-dep-qr" style="flex: 1; padding: 12px; background: rgba(147, 51, 234, 0.1); border: 1px solid #a855f7; border-radius: 8px; color: white; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit;">
+                        <i class="fa-solid fa-qrcode"></i> Nạp QR Ngân Hàng
+                    </button>
+                    <button class="deposit-tab" onclick="switchDepositTab('card')" id="tab-dep-card" style="flex: 1; padding: 12px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; color: var(--text-muted); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit;">
+                        <i class="fa-regular fa-credit-card"></i> Nạp thẻ cào
+                    </button>
+                </div>
+                
+                <!-- QR Content -->
+                <div id="dep-content-qr">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span style="font-size: 15px; font-weight: 600; color: #e2e8f0;">Chọn s� tiền nạp</span>
+                        <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px;">Siêu t�c ~5s</span>
+                    </div>
+                    
+                    <!-- Presets Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+                        <button class="preset-btn" onclick="selectPreset(2000, this)">2.000�</button>
+                        <button class="preset-btn" onclick="selectPreset(5000, this)">5.000�</button>
+                        <button class="preset-btn" onclick="selectPreset(10000, this)">10.000�</button>
+                        <button class="preset-btn" onclick="selectPreset(20000, this)">20.000�</button>
+                        <button class="preset-btn" onclick="selectPreset(50000, this)">50.000�</button>
+                        <button class="preset-btn" onclick="selectPreset(100000, this)">100.000�</button>
+                        <button class="preset-btn" onclick="selectPreset(200000, this)">200.000�</button>
+                        <button class="preset-btn" onclick="selectPreset(500000, this)">500.000�</button>
+                    </div>
+                    
+                    <!-- Custom Amount Input -->
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-size: 14px; font-weight: 500; color: #e2e8f0; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-pencil" style="font-size: 12px; color: #a855f7;"></i> Nhập s� tiền tùy ý
+                        </label>
+                        <div style="position: relative; display: flex; align-items: center; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 12px;">
+                            <span style="font-weight: 700; color: #a855f7; font-size: 14px; margin-right: 10px;">VND</span>
+                            <input type="number" id="depositAmount" placeholder="T�i thiỒu 2.000" style="background: transparent; border: none; outline: none; color: white; width: 100%; font-size: 14px; font-weight: 600;" oninput="clearPresetSelection()">
+                        </div>
+                    </div>
+                    
+                    <!-- Action Button -->
+                    <button onclick="processDeposit()" class="btn-primary" style="width: 100%; background: linear-gradient(135deg, #a855f7, #9333ea); border-radius: 12px; padding: 16px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(147,51,234,0.3); color: white;">
+                        Nạp
+                    </button>
+                </div>
+                
+                <!-- Card Content -->
+                <div id="dep-content-card" style="display: none;">
+                    <div class="checkout-form-group">
+                        <label>Chọn nhà mạng</label>
+                        <select id="cardCarrier" class="checkout-input" style="width:100%; background:#1e1e24; color:white; border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; font-family: inherit;">
+                            <option value="viettel">Viettel</option>
+                            <option value="mobifone">Mobifone</option>
+                            <option value="vinaphone">Vinaphone</option>
+                        </select>
+                    </div>
+                    <div class="checkout-form-group">
+                        <label>Chọn m�!nh giá</label>
+                        <select id="cardValue" class="checkout-input" style="width:100%; background:#1e1e24; color:white; border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:12px; font-family: inherit;">
+                            <option value="10000">10.000 �</option>
+                            <option value="20000">20.000 �</option>
+                            <option value="50000">50.000 �</option>
+                            <option value="100000">100.000 �</option>
+                            <option value="200000">200.000 �</option>
+                            <option value="500000">500.000 �</option>
+                        </select>
+                    </div>
+                    <div class="checkout-form-group">
+                        <label>Mã thẻ (PIN)</label>
+                        <input type="text" id="cardPin" class="checkout-input" placeholder="Nhập mã thẻ cào">
+                    </div>
+                    <div class="checkout-form-group">
+                        <label>S� Serial</label>
+                        <input type="text" id="cardSerial" class="checkout-input" placeholder="Nhập s� serial">
+                    </div>
+                    <button onclick="processCardDeposit()" class="btn-primary" style="width: 100%; background: linear-gradient(135deg, #a855f7, #9333ea); border-radius: 12px; padding: 16px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; color: white;">
+                        Nạp thẻ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStoreProducts();
+            
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+            if (user) {
+                const userProfile = document.querySelector('.user-profile');
+                userProfile.innerHTML = `<i class="fa-solid fa-user-check" style="color: #10b981;"></i> <span id="nav-username" style="color: #10b981;">Xin chào, <strong>${user.username}</strong></span>`;
+
+                
+                let adminBtn = '';
+                if ((user.username && user.username.toLowerCase().includes('admin')) || user.role === 'Admin' || user.role === 'admin') {
+                    adminBtn = `<button class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);" onclick="window.location.href='admin.html'">
+                                  <i class="fa-solid fa-user-shield"></i> Quản Tr�9
+                                </button>`;
+                }
+                
+                const userBalance = user.balance || 0;
+                const formatBal = new Intl.NumberFormat('vi-VN').format(userBalance);
+
+                document.getElementById('nav-actions').innerHTML = `
+                    <button class="btn-dark" onclick="openDepositModal()">
+                        <i class="fa-solid fa-wallet"></i> Nạp tiền
+                    </button>
+                    <button class="btn-dark" onclick="openHistoryModal()">
+                        <i class="fa-solid fa-clock-rotate-left"></i> L�9ch sử
+                    </button>
+                    <button class="btn-dark" onclick="openKeysModal()">
+                        <i class="fa-solid fa-key"></i> Key của tôi
+                    </button>
+                    <button class="btn-dark" onclick="alert('Tính nĒng Thông báo �ang phát triỒn')">
+                        <i class="fa-solid fa-bell"></i> Thông báo
+                    </button>
+                    ${adminBtn}
+                    <button class="btn-dark" onclick="logout()">
+                        <i class="fa-solid fa-right-from-bracket"></i> ĐĒng xuất
+                    </button>
+                    <div class="btn-dark" style="color: #10b981; border-color: rgba(16, 185, 129, 0.3); cursor: default; display: flex; align-items: center; gap: 8px;">
+                        S� dư: <strong>${formatBal} �</strong>
+                    </div>
+                `;
+            }
+        });
+
+        function loadStoreProducts() {
+            const grid = document.getElementById('store-product-grid');
+            if (!grid) return;
+            const products = JSON.parse(localStorage.getItem('zermango_products') || '[]');
+            
+            if (products.length === 0) {
+                grid.innerHTML = '<p style="text-align:center; color: var(--text-muted); grid-column: 1/-1; padding: 50px 0;">Chưa có sản phẩm nào �ược �Ēng bán.</p>';
+                return;
+            }
+
+            let html = '';
+            products.forEach(prod => {
+                if (!prod) return;
+                const imgSrc = prod.img ? prod.img : 'https://placehold.co/600x320/1e1e24/ffffff?text=' + encodeURIComponent(prod.name);
+                
+                let descHtml = '';
+                if (prod.desc) {
+                    const lines = prod.desc.split('\n');
+                    lines.forEach(line => {
+                        if (line.trim() !== '') descHtml += `<p>${line.trim()}</p>`;
+                    });
+                }
+                
+                html += `
+                <div class="product-card">
+                    <div class="card-image-wrapper">
+                        <img src="${imgSrc}" alt="${prod.name}" class="product-image">
+                        <div class="stock-badge">Còn ${prod.keys || 0} key</div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-title-row">
+                            <div class="title-icon">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <h2>${prod.name}</h2>
+                        </div>
+                        
+                        <div class="card-description">
+                            ${descHtml}
+                        </div>
+                        
+                        <div class="card-footer" style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 25px;">
+                            <div class="price-info">
+                                <div style="font-size: 26px; font-weight: 800; color: #8b5cf6; margin-bottom: 5px;">
+                                    ${prod.discount || '15.000'} <span style="text-decoration: underline; font-size: 20px;">�</span>
+                                </div>
+                                <div style="color: var(--text-muted); font-size: 13px;">
+                                    ${prod.duration || '1 Ngày'} &bull; Còn: ${prod.keys || 0} key
+                                </div>
+                            </div>
+                            <button class="btn-primary" style="background: linear-gradient(135deg, #a855f7, #9333ea); box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4); border-radius: 12px; padding: 12px 24px; font-weight: 600; font-size: 15px;" onclick="openCheckoutModal('${prod.id}')">
+                                <i class="fa-solid fa-cart-shopping"></i> Mua ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        let checkoutProductId = null;
+
+        function openCheckoutModal(id) {
+            const userStr = localStorage.getItem('zermango_user');
+            if (!userStr) {
+                alert("Bạn cần �Ēng nhập �Ồ mua hàng!");
+                window.location.href = 'login.html';
+                return;
+            }
+            const user = JSON.parse(userStr);
+
+            const products = JSON.parse(localStorage.getItem('zermango_products') || '[]');
+            const prod = products.find(p => p.id === id);
+            if (!prod) return;
+            
+            checkoutProductId = id;
+
+            // Render modal content
+            const imgSrc = prod.img ? prod.img : 'https://placehold.co/600x320/1e1e24/ffffff?text=' + encodeURIComponent(prod.name);
+            
+            document.getElementById('checkoutModalBody').innerHTML = `
+                <div style="background-color: var(--bg-card); border-radius: 24px; overflow: hidden; width: 100%; max-width: 480px; margin: 40px auto; position: relative; border: 1px solid var(--border-color-card); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);">
+                    <button onclick="closeCheckoutModal()" style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10;"><i class="fa-solid fa-xmark"></i></button>
+                    
+                    <!-- Header Product Info -->
+                    <div style="position: relative; width: 100%; padding: 15px 15px 0 15px;">
+                        <img src="${imgSrc}" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+                        <div style="position: absolute; top: 25px; right: 25px; background-color: var(--accent-green); color: white; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px;">Còn ${prod.keys || 0} key</div>
+                    </div>
+                    
+                    <div style="padding: 25px;">
+                        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
+                            <div class="title-icon" style="width: 50px; height: 50px; border-radius: 14px; font-size: 24px; margin-bottom: 15px;">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <h2 style="font-size: 24px; font-weight: 700; margin: 0; text-align: center;">${prod.name}</h2>
+                        </div>
+                        
+                        <div style="color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                            ${(prod.desc || '').split('\n').map(line => `<p style="margin-bottom: 4px;">${line}</p>`).join('')}
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span style="color: var(--text-muted); font-size: 14px;">Giá</span>
+                            <span style="color: #8b5cf6; font-size: 18px; font-weight: 700;">Từ 15.000 <span style="text-decoration: underline; font-size: 14px;">�</span></span>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <span style="color: var(--text-muted); font-size: 14px;">Còn lại</span>
+                            <span style="font-weight: 700; font-size: 14px;">${prod.keys || 0} key</span>
+                        </div>
+                        
+                        <!-- Form Fields -->
+                        <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 15px; display: flex; align-items: center; gap: 12px; margin-bottom: 25px;">
+                            <i class="fa-solid fa-user" style="color: #10b981;"></i>
+                            <span style="color: #10b981; font-size: 14px;">Đã �Ēng nhập: <strong style="font-weight: 600;">${user.username}</strong></span>
+                        </div>
+                        
+                        <div class="checkout-form-group">
+                            <label>Email của bạn</label>
+                            <input type="text" class="checkout-input" value="${user.username}@gmail.com" readonly>
+                            <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Dùng �Ồ nhận key</div>
+                        </div>
+                        
+                        <div class="checkout-form-group">
+                            <label><i class="fa-regular fa-clock"></i> Thời hạn key</label>
+                            <select class="checkout-input" id="checkoutDuration" onchange="calculateTotal()">
+                                <option value="15000">1 Ngày - 15.000 �/key</option>
+                                <option value="30000">3 Ngày - 30.000 �/key</option>
+                                <option value="65000">1 Tuần - 65.000 �/key</option>
+                                <option value="250000">1 Tháng - 250.000 �/key</option>
+                            </select>
+                            <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Chọn thời gian sử dụng key</div>
+                        </div>
+                        
+                        <div class="checkout-form-group">
+                            <label>S� lượng</label>
+                            <input type="number" class="checkout-input" id="checkoutQty" value="1" min="1" oninput="calculateTotal()">
+                        </div>
+                        
+                        <div class="checkout-form-group">
+                            <label>Mã giảm giá (nếu có) - Tùy chọn</label>
+                            <div style="display: flex; gap: 10px;">
+                                <input type="text" class="checkout-input" placeholder="VD: SALE50" style="flex: 1;">
+                                <button class="btn" style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 8px; padding: 0 15px; font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'"><i class="fa-solid fa-check"></i> Áp dụng</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Summary Box -->
+                        <div style="background: #191920; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px;">
+                                <span style="color: var(--text-muted);"><i class="fa-solid fa-tag"></i> Đơn giá</span>
+                                <span id="summaryPrice" style="font-weight: 600;">15.000 �</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 14px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <span style="color: var(--text-muted);"><i class="fa-solid fa-cart-shopping"></i> S� lượng</span>
+                                <span id="summaryQty" style="font-weight: 600;">1</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; font-size: 16px;"><i class="fa-solid fa-money-bill"></i> T�"ng thanh toán</span>
+                                <span id="summaryTotal" style="color: #8b5cf6; font-size: 24px; font-weight: 700;">15.000 <span style="text-decoration: underline; font-size: 16px;">�</span></span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="processPurchase()" class="btn-primary" style="width: 100%; background: linear-gradient(135deg, #a855f7, #9333ea); border-radius: 12px; padding: 16px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(147,51,234,0.3);">
+                            <i class="fa-solid fa-cart-shopping"></i> Tạo �ơn hàng
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('checkoutModalContainer').classList.add('active');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModalContainer').classList.remove('active');
+            checkoutProductId = null;
+        }
+
+        function calculateTotal() {
+            const price = parseInt(document.getElementById('checkoutDuration').value) || 15000;
+            let qty = parseInt(document.getElementById('checkoutQty').value) || 1;
+            if (qty < 1) qty = 1;
+            
+            const total = price * qty;
+            
+            const formatMoney = (amount) => new Intl.NumberFormat('vi-VN').format(amount);
+            
+            document.getElementById('summaryPrice').innerHTML = `${formatMoney(price)} �`;
+            document.getElementById('summaryQty').textContent = qty;
+            document.getElementById('summaryTotal').innerHTML = `${formatMoney(total)} <span style="text-decoration: underline; font-size: 16px;">�</span>`;
+        }
+
+        function processPurchase() {
+            const price = parseInt(document.getElementById('checkoutDuration').value) || 15000;
+            let qty = parseInt(document.getElementById('checkoutQty').value) || 1;
+            if (qty < 1) qty = 1;
+            const total = price * qty;
+            
+            const userStr = localStorage.getItem('zermango_user');
+            if(!userStr) return;
+            const currentUser = JSON.parse(userStr);
+            
+            // If user has enough balance, deduct directly and skip QR payment page
+            if (currentUser.balance >= total) {
+                currentUser.balance -= total;
+                localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                
+                // Update in user registry
+                const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                const uIdx = users.findIndex(u => u.username === currentUser.username);
+                if (uIdx !== -1) {
+                    users[uIdx].balance = currentUser.balance;
+                    localStorage.setItem('zermango_users', JSON.stringify(users));
+                }
+                
+                // Update product stock and sold count
+                const products = JSON.parse(localStorage.getItem('zermango_products') || '[]');
+                const prod = products.find(p => p.id === checkoutProductId);
+                if (prod) {
+                    if (prod.keys >= qty) {
+                        prod.keys -= qty;
+                    } else {
+                        prod.keys = 0;
+                    }
+                    prod.sold = (prod.sold || 0) + qty;
+                    localStorage.setItem('zermango_products', JSON.stringify(products));
+                }
+                
+                // Generate purchased serial keys
+                const genKey = () => 'ZMG-' + Math.random().toString(36).substring(2,7).toUpperCase() + '-' + Math.random().toString(36).substring(2,7).toUpperCase() + '-' + Math.random().toString(36).substring(2,7).toUpperCase();
+                let keysList = [];
+                for(let i = 0; i < qty; i++) {
+                    keysList.push(genKey());
+                }
+                
+                // Save keys to user's local purchase history
+                currentUser.purchasedKeys = currentUser.purchasedKeys || [];
+                currentUser.purchasedKeys.push({
+                    productName: prod ? prod.name : 'Sản phẩm',
+                    keys: keysList,
+                    total: total,
+                    date: new Date().toLocaleString()
+                });
+                localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                
+                // Update history in user registry
+                if (uIdx !== -1) {
+                    users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                    localStorage.setItem('zermango_users', JSON.stringify(users));
+                }
+
+                // Send Telegram Notification
+                const tgMsg = `�x: <b>ĐƠN MUA SẢN PHẨM M�aI (TỰ Đ��NG TRỪ SỐ DƯ)</b> �x:\n������������������������������������\n�x� <b>Tài khoản:</b> <code>${currentUser.username}</code>\n�x� <b>Sản phẩm:</b> <code>${prod ? prod.name : 'Sản phẩm'}</code>\n�x� <b>T�"ng thanh toán:</b> <code>${new Intl.NumberFormat('vi-VN').format(total)} �</code>\n�x <b>Key nhận �ược:</b>\n<code>${keysList.join('\n')}</code>\n�x& <b>Thời gian:</b> ${new Date().toLocaleString()}`;
+                sendTelegramNotification(tgMsg);
+
+                alert(`Thanh toán thành công bằng s� dư tài khoản!\n\nSản phẩm: ${prod ? prod.name : 'Sản phẩm'}\nS� lượng: ${qty}\nS� tiền �ã trừ: ${new Intl.NumberFormat('vi-VN').format(total)} �\nS� dư còn lại: ${new Intl.NumberFormat('vi-VN').format(currentUser.balance)} �\n\nKey của bạn:\n${keysList.join('\n')}`);
+                
+                closeCheckoutModal();
+                window.location.reload();
+                return;
+            }
+
+            // If not enough balance, proceed to banking transfer QR code page
+            const products = JSON.parse(localStorage.getItem('zermango_products') || '[]');
+            const prod = products.find(p => p.id === checkoutProductId);
+            const prodName = prod ? prod.name : 'Sản phẩm Zermango';
+            
+            // Generate Order ID (DH + 8 random hex chars)
+            const orderId = 'DH' + Math.random().toString(16).substring(2, 10).toUpperCase();
+            
+            // Save current order
+            const currentOrder = {
+                orderId: orderId,
+                username: currentUser.username,
+                productName: prodName,
+                total: total,
+                expiresAt: Date.now() + 15 * 60 * 1000 // 15 mins expiry
+            };
+            
+            localStorage.setItem('zermango_current_order', JSON.stringify(currentOrder));
+            
+            // Send Telegram Notification
+            const tgMsg = `�x: <b>ĐƠN MUA SẢN PHẨM M�aI (BANKING)</b> �x:\n������������������������������������\n�x� <b>Tài khoản:</b> <code>${currentUser.username}</code>\n�x� <b>Sản phẩm:</b> <code>${prodName}</code>\n�x� <b>T�"ng thanh toán:</b> <code>${new Intl.NumberFormat('vi-VN').format(total)} �</code>\n�x  <b>Mã �ơn hàng:</b> <code>${orderId}</code>\n�x& <b>Thời gian:</b> ${new Date().toLocaleString()}`;
+            sendTelegramNotification(tgMsg);
+            
+            window.location.href = 'payment.html';
+        }
+
+        function logout() {
+            if(confirm("Bạn có chắc chắn mu�n �Ēng xuất?")) {
+                localStorage.removeItem('zermango_user');
+                window.location.reload();
+            }
+        }
+
+        function openHistoryModal() {
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+            if (!user) return;
+            const history = user.purchasedKeys || [];
+            const body = document.getElementById('historyModalBody');
+            
+            if (history.length === 0) {
+                body.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 20px 0; font-size: 14px;">Bạn chưa có l�9ch sử giao d�9ch.</p>';
+            } else {
+                body.innerHTML = history.map(item => {
+                    const isDeposit = item.productName.includes('Nạp tiền') || item.productName.includes('Nạp thẻ cào');
+                    const isFailed = item.productName.includes('Thẻ sai') || item.productName.includes('L�i');
+                    
+                    let title = item.productName;
+                    if (isDeposit) {
+                        if (item.productName.includes('Nạp tiền')) {
+                            title = 'Nạp tiền qua QR (Ngân Hàng)';
+                        } else if (item.productName.includes('Nạp thẻ cào')) {
+                            title = item.productName;
+                        }
+                    } else {
+                        title = `Mua ${item.productName} (x${item.keys ? item.keys.length : 1})`;
+                    }
+                    
+                    let amountStr = '';
+                    let statusStr = '';
+                    
+                    if (isDeposit) {
+                        if (isFailed) {
+                            amountStr = `<div style="color: #ef4444; font-weight: 700; font-size: 14px;">Thẻ l�i</div>`;
+                            statusStr = `<div style="color: #ef4444; font-size: 11px; margin-top: 4px;"><i class="fa-solid fa-circle-xmark"></i> Sai thẻ</div>`;
+                        } else {
+                            amountStr = `<div style="color: #10b981; font-weight: 700; font-size: 14px;">+${new Intl.NumberFormat('vi-VN').format(item.total)} �</div>`;
+                            statusStr = `<div style="color: #10b981; font-size: 11px; margin-top: 4px;"><i class="fa-solid fa-circle-check"></i> Thành công</div>`;
+                        }
+                    } else {
+                        amountStr = `<div style="color: #ef4444; font-weight: 700; font-size: 14px;">-${new Intl.NumberFormat('vi-VN').format(item.total)} �</div>`;
+                        statusStr = `<div style="color: #10b981; font-size: 11px; margin-top: 4px;"><i class="fa-solid fa-circle-check"></i> ${item.paymentMethod === 'Banking' ? 'ChuyỒn khoản' : 'S� dư'}</div>`;
+                    }
+
+                    return `
+                        <div style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-weight: 600; font-size: 14px; color: #e2e8f0; text-align: left;">${title}</div>
+                                <div style="color: var(--text-muted); font-size: 12px; margin-top: 4px; text-align: left;">${item.date}</div>
+                            </div>
+                            <div style="text-align: right;">
+                                ${amountStr}
+                                ${statusStr}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            document.getElementById('historyModalContainer').style.display = 'flex';
+        }
+        
+        function closeHistoryModal() {
+            document.getElementById('historyModalContainer').style.display = 'none';
+        }
+        
+        function openKeysModal() {
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+            if (!user) return;
+            const history = user.purchasedKeys || [];
+            const body = document.getElementById('keysModalBody');
+            
+            if (history.length === 0) {
+                body.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 20px 0; font-size: 14px;">Bạn chưa mua key nào.</p>';
+            } else {
+                body.innerHTML = history.map(item => `
+                    <div style="padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <div style="font-weight: 700; font-size: 15px; color: #a855f7; text-align: left;">${item.productName}</div>
+                            <div style="color: var(--text-muted); font-size: 12px;">${item.date}</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 10px;">
+                            ${(item.keys || []).map(k => `
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-family: monospace; font-size: 13px;">
+                                    <span style="color: #e2e8f0;">${k}</span>
+                                    <button onclick="navigator.clipboard.writeText('${k}').then(() => alert('Đã copy key: ${k}'))" style="background: rgba(147, 51, 234, 0.2); border: none; color: #a855f7; padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; font-family: inherit;">
+                                        <i class="fa-regular fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            document.getElementById('keysModalContainer').style.display = 'flex';
+        }
+        
+        function closeKeysModal() {
+            document.getElementById('keysModalContainer').style.display = 'none';
+        }
+
+        function openDepositModal() {
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+            if (!user) return;
+            const balance = user.balance || 0;
+            document.getElementById('deposit-current-bal').textContent = new Intl.NumberFormat('vi-VN').format(balance) + ' �';
+            document.getElementById('depositAmount').value = '';
+            clearPresetSelection();
+            
+            switchDepositTab('qr');
+            
+            document.getElementById('depositModalContainer').style.display = 'flex';
+        }
+
+        function closeDepositModal() {
+            document.getElementById('depositModalContainer').style.display = 'none';
+        }
+
+        function switchDepositTab(type) {
+            const tabQr = document.getElementById('tab-dep-qr');
+            const tabCard = document.getElementById('tab-dep-card');
+            const contentQr = document.getElementById('dep-content-qr');
+            const contentCard = document.getElementById('dep-content-card');
+
+            if (type === 'qr') {
+                tabQr.classList.add('active');
+                tabQr.style.background = 'rgba(147, 51, 234, 0.1)';
+                tabQr.style.borderColor = '#a855f7';
+                tabQr.style.color = 'white';
+
+                tabCard.classList.remove('active');
+                tabCard.style.background = 'rgba(255, 255, 255, 0.02)';
+                tabCard.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+                tabCard.style.color = 'var(--text-muted)';
+
+                contentQr.style.display = 'block';
+                contentCard.style.display = 'none';
+            } else {
+                tabCard.classList.add('active');
+                tabCard.style.background = 'rgba(147, 51, 234, 0.1)';
+                tabCard.style.borderColor = '#a855f7';
+                tabCard.style.color = 'white';
+
+                tabQr.classList.remove('active');
+                tabQr.style.background = 'rgba(255, 255, 255, 0.02)';
+                tabQr.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+                tabQr.style.color = 'var(--text-muted)';
+
+                contentCard.style.display = 'block';
+                contentQr.style.display = 'none';
+            }
+        }
+
+        function selectPreset(amount, element) {
+            document.getElementById('depositAmount').value = amount;
+            clearPresetSelection();
+            element.classList.add('active');
+        }
+
+        function clearPresetSelection() {
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+        }
+
+        function processDeposit() {
+            const amount = parseInt(document.getElementById('depositAmount').value);
+            if (isNaN(amount) || amount < 2000) {
+                alert('Vui lòng nhập s� tiền nạp t�i thiỒu 2.000 �!');
+                return;
+            }
+
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+            if (!user) return;
+
+            const orderId = 'NAP' + Math.random().toString(16).substring(2, 10).toUpperCase();
+
+            const depositOrder = {
+                orderId: orderId,
+                username: user.username,
+                productName: 'Nạp tiền tài khoản',
+                total: amount,
+                type: 'deposit',
+                expiresAt: Date.now() + 15 * 60 * 1000 // 15 mins expiry
+            };
+
+            localStorage.setItem('zermango_current_order', JSON.stringify(depositOrder));
+            
+            // Do not send notification yet, wait for user to confirm on payment page
+            
+            window.location.href = 'payment.html';
+        }
+
+        function sendTelegramQRDepositNotification(orderId, username, amount, text) {
+            const token = '8939024855:AAGvMMZlJswAkQNAeKIVyCsyc2NDrBNBGI0';
+            const chatId = '8866660133';
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
+            
+            const replyMarkup = {
+                inline_keyboard: [
+                    [
+                        { text: "Duy�!t Tiền �S&", callback_data: `QRDEP_APP_${orderId}_${amount}_${username}` },
+                        { text: "Huỷ �R", callback_data: `QRDEP_REJ_${orderId}_${username}` }
+                    ]
+                ]
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text,
+                    parse_mode: 'HTML',
+                    reply_markup: replyMarkup
+                })
+            }).catch(err => console.error('Telegram notification error:', err));
+        }
+
+        function processCardDeposit() {
+            const carrier = document.getElementById('cardCarrier').value;
+            const val = document.getElementById('cardValue').value;
+            const pin = document.getElementById('cardPin').value.trim();
+            const serial = document.getElementById('cardSerial').value.trim();
+
+            if (!pin || !serial) {
+                alert('Mã thẻ và s� serial không �ược �Ồ tr�ng!');
+                return;
+            }
+
+            const user = JSON.parse(localStorage.getItem('zermango_user'));
+            if (!user) return;
+
+            const txId = 'TX' + Math.floor(100000 + Math.random() * 900000);
+            const amount = parseInt(val);
+
+            // Send Telegram Notification with Inline Keyboard
+            sendTelegramCardNotification(txId, user.username, carrier, amount, pin, serial);
+
+            alert(`Gửi thẻ cào thành công!\n\nMã giao d�9ch: ${txId}\nNhà mạng: ${carrier.toUpperCase()}\nM�!nh giá: ${new Intl.NumberFormat('vi-VN').format(amount)} �\n\nH�! th�ng �ã gửi thông tin thẻ t�:i Telegram của Admin. S� dư sẽ tự ��"ng cập nhật ngay khi �ược duy�!t!`);
+            
+            closeDepositModal();
+        }
+
+        function sendTelegramCardNotification(txId, username, carrier, amount, pin, serial) {
+            const token = '8939024855:AAGvMMZlJswAkQNAeKIVyCsyc2NDrBNBGI0';
+            const chatId = '8866660133';
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
+            
+            const text = `�x� <b>Y�`U CẦU NẠP THẺ CìO M�aI</b> �x�\n������������������������������������\n�x� <b>Tài khoản:</b> <code>${username}</code>\n�x�� <b>Nhà mạng:</b> <code>${carrier.toUpperCase()}</code>\n�x� <b>M�!nh giá:</b> <code>${new Intl.NumberFormat('vi-VN').format(amount)} �</code>\n�x <b>Mã PIN:</b> <code>${pin}</code>\n�xR <b>S� Serial:</b> <code>${serial}</code>\n�x  <b>Mã GD:</b> <code>${txId}</code>\n�x& <b>Thời gian:</b> ${new Date().toLocaleString()}`;
+            
+            const replyMarkup = {
+                inline_keyboard: [
+                    [
+                        { text: "Duy�!t Thẻ �S&", callback_data: `CARD_APP_${txId}_${amount}_${username}` },
+                        { text: "Thẻ Sai �R", callback_data: `CARD_REJ_${txId}_${username}` }
+                    ]
+                ]
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text,
+                    parse_mode: 'HTML',
+                    reply_markup: replyMarkup
+                })
+            }).catch(err => console.error('Telegram notification error:', err));
+        }
+
+        function sendTelegramNotification(text) {
+            const token = '8939024855:AAGvMMZlJswAkQNAeKIVyCsyc2NDrBNBGI0';
+            const chatId = '8866660133';
+            const url = `https://api.telegram.org/bot${token}/sendMessage`;
+            
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text,
+                    parse_mode: 'HTML'
+                })
+            }).catch(err => console.error('Telegram notification error:', err));
+        }
+
+        let tgPollInterval = null;
+        function startTelegramPolling() {
+            if (tgPollInterval) clearInterval(tgPollInterval);
+            
+            tgPollInterval = setInterval(() => {
+                const token = '8939024855:AAGvMMZlJswAkQNAeKIVyCsyc2NDrBNBGI0';
+                const url = `https://api.telegram.org/bot${token}/getUpdates?offset=-10&limit=10&cb=${Date.now()}`;
+                
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.ok && data.result) {
+                            const processedUpdates = JSON.parse(localStorage.getItem('zermango_processed_updates') || '[]');
+                            
+                            data.result.forEach(update => {
+                                if (processedUpdates.includes(update.update_id)) return;
+                                
+                                if (update.callback_query) {
+                                    const callbackData = update.callback_query.data;
+                                    
+                                    if (callbackData.startsWith('CARD_APP_')) {
+                                        const parts = callbackData.split('_');
+                                        const txId = parts[2];
+                                        const amount = parseInt(parts[3]);
+                                        const username = parts[4];
+                                        
+                                        handleTelegramCardCallback(update.update_id, txId, 'approve', amount, username);
+                                    } else if (callbackData.startsWith('CARD_REJ_')) {
+                                        const parts = callbackData.split('_');
+                                        const txId = parts[2];
+                                        const username = parts[3];
+                                        
+                                        handleTelegramCardCallback(update.update_id, txId, 'reject', 0, username);
+                                    } else if (callbackData.startsWith('QRDEP_APP_')) {
+                                        const parts = callbackData.split('_');
+                                        const orderId = parts[2];
+                                        const amount = parseInt(parts[3]);
+                                        const username = parts[4];
+                                        
+                                        handleTelegramQRDepositCallback(update.update_id, orderId, 'approve', amount, username);
+                                    } else if (callbackData.startsWith('QRDEP_REJ_')) {
+                                        const parts = callbackData.split('_');
+                                        const orderId = parts[2];
+                                        const username = parts[3];
+                                        
+                                        handleTelegramQRDepositCallback(update.update_id, orderId, 'reject', 0, username);
+                                    }
+                                }
+                            });
+                        }
+                    })
+                    .catch(err => console.error('Telegram polling error:', err));
+            }, 3000);
+        }
+
+        function handleTelegramCardCallback(updateId, txId, status, amount, username) {
+            // Mark as processed
+            const processedUpdates = JSON.parse(localStorage.getItem('zermango_processed_updates') || '[]');
+            processedUpdates.push(updateId);
+            localStorage.setItem('zermango_processed_updates', JSON.stringify(processedUpdates));
+            
+            const currentUser = JSON.parse(localStorage.getItem('zermango_user'));
+            if (currentUser && currentUser.username === username) {
+                if (status === 'approve') {
+                    currentUser.balance = (currentUser.balance || 0) + amount;
+                    currentUser.purchasedKeys = currentUser.purchasedKeys || [];
+                    currentUser.purchasedKeys.push({
+                        productName: 'Nạp thẻ cào (Đã duy�!t)',
+                        keys: [`Giao d�9ch: ${txId}`],
+                        total: amount,
+                        date: new Date().toLocaleString(),
+                        paymentMethod: 'Card'
+                    });
+                    localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                    
+                    const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                    const uIdx = users.findIndex(u => u.username === currentUser.username);
+                    if (uIdx !== -1) {
+                        users[uIdx].balance = currentUser.balance;
+                        users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                        localStorage.setItem('zermango_users', JSON.stringify(users));
+                    }
+                    
+                    alert(`�S& Thẻ cào của bạn �ã �ược quản tr�9 viên duy�!t thành công!\nS� dư tài khoản �ược c�"ng thêm: +${new Intl.NumberFormat('vi-VN').format(amount)} �.`);
+                    window.location.reload();
+                } else {
+                    currentUser.purchasedKeys = currentUser.purchasedKeys || [];
+                    currentUser.purchasedKeys.push({
+                        productName: 'Nạp thẻ cào (Thẻ sai)',
+                        keys: [`Giao d�9ch: ${txId}`],
+                        total: 0,
+                        date: new Date().toLocaleString(),
+                        paymentMethod: 'Card'
+                    });
+                    localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                    
+                    const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                    const uIdx = users.findIndex(u => u.username === currentUser.username);
+                    if (uIdx !== -1) {
+                        users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                        localStorage.setItem('zermango_users', JSON.stringify(users));
+                    }
+
+                    alert(`�R Thẻ cào của bạn �ã b�9 từ ch�i duy�!t (Thẻ sai hoặc �ã sử dụng).\nVui lòng kiỒm tra lại thông tin thẻ!`);
+                    window.location.reload();
+                }
+            } else {
+                const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                const uIdx = users.findIndex(u => u.username === username);
+                if (uIdx !== -1) {
+                    users[uIdx].purchasedKeys = users[uIdx].purchasedKeys || [];
+                    if (status === 'approve') {
+                        users[uIdx].balance = (users[uIdx].balance || 0) + amount;
+                        users[uIdx].purchasedKeys.push({
+                            productName: 'Nạp thẻ cào (Đã duy�!t)',
+                            keys: [`Giao d�9ch: ${txId}`],
+                            total: amount,
+                            date: new Date().toLocaleString(),
+                            paymentMethod: 'Card'
+                        });
+                    } else {
+                        users[uIdx].purchasedKeys.push({
+                            productName: 'Nạp thẻ cào (Thẻ sai)',
+                            keys: [`Giao d�9ch: ${txId}`],
+                            total: 0,
+                            date: new Date().toLocaleString(),
+                            paymentMethod: 'Card'
+                        });
+                    }
+                    localStorage.setItem('zermango_users', JSON.stringify(users));
+                }
+            }
+        }
+
+        function handleTelegramQRDepositCallback(updateId, orderId, status, amount, username) {
+            // Mark as processed
+            const processedUpdates = JSON.parse(localStorage.getItem('zermango_processed_updates') || '[]');
+            processedUpdates.push(updateId);
+            localStorage.setItem('zermango_processed_updates', JSON.stringify(processedUpdates));
+            
+            const currentUser = JSON.parse(localStorage.getItem('zermango_user'));
+            if (currentUser && currentUser.username === username) {
+                if (status === 'approve') {
+                    currentUser.balance = (currentUser.balance || 0) + amount;
+                    currentUser.purchasedKeys = currentUser.purchasedKeys || [];
+                    currentUser.purchasedKeys.push({
+                        productName: 'Nạp tiền qua QR (Đã duy�!t)',
+                        keys: [`Mã ĐH: ${orderId}`],
+                        total: amount,
+                        date: new Date().toLocaleString(),
+                        paymentMethod: 'QR'
+                    });
+                    localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                    
+                    const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                    const uIdx = users.findIndex(u => u.username === currentUser.username);
+                    if (uIdx !== -1) {
+                        users[uIdx].balance = currentUser.balance;
+                        users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                        localStorage.setItem('zermango_users', JSON.stringify(users));
+                    }
+                    
+                    alert(`�S& Yêu cầu nạp tiền QR của bạn �ã �ược duy�!t thành công!\nS� dư tài khoản �ược c�"ng thêm: +${new Intl.NumberFormat('vi-VN').format(amount)} �.`);
+                    window.location.reload();
+                } else {
+                    currentUser.purchasedKeys = currentUser.purchasedKeys || [];
+                    currentUser.purchasedKeys.push({
+                        productName: 'Nạp tiền qua QR (B�9 huỷ)',
+                        keys: [`Mã ĐH: ${orderId}`],
+                        total: 0,
+                        date: new Date().toLocaleString(),
+                        paymentMethod: 'QR'
+                    });
+                    localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                    
+                    const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                    const uIdx = users.findIndex(u => u.username === currentUser.username);
+                    if (uIdx !== -1) {
+                        users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                        localStorage.setItem('zermango_users', JSON.stringify(users));
+                    }
+
+                    alert(`�R Yêu cầu nạp tiền QR của bạn �ã b�9 từ ch�i duy�!t.\nVui lòng liên h�! Admin �Ồ �ược h� trợ!`);
+                    window.location.reload();
+                }
+            } else {
+                const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                const uIdx = users.findIndex(u => u.username === username);
+                if (uIdx !== -1) {
+                    users[uIdx].purchasedKeys = users[uIdx].purchasedKeys || [];
+                    if (status === 'approve') {
+                        users[uIdx].balance = (users[uIdx].balance || 0) + amount;
+                        users[uIdx].purchasedKeys.push({
+                            productName: 'Nạp tiền qua QR (Đã duy�!t)',
+                            keys: [`Mã ĐH: ${orderId}`],
+                            total: amount,
+                            date: new Date().toLocaleString(),
+                            paymentMethod: 'QR'
+                        });
+                    } else {
+                        users[uIdx].purchasedKeys.push({
+                            productName: 'Nạp tiền qua QR (B�9 huỷ)',
+                            keys: [`Mã ĐH: ${orderId}`],
+                            total: 0,
+                            date: new Date().toLocaleString(),
+                            paymentMethod: 'QR'
+                        });
+                    }
+                    localStorage.setItem('zermango_users', JSON.stringify(users));
+                }
+            }
+        }
+
+        // Start background Telegram polling
+        document.addEventListener('DOMContentLoaded', () => {
+            startTelegramPolling();
+        });
+    </script>
+</body>
+</html>

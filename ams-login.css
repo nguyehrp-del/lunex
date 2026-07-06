@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Reset & Fonts for AMS Login to ensure it works independently of style.css */
+.ams-container, .ams-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.ams-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #040408;
+  position: relative;
+  overflow: hidden;
+}
+
+.ams-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+.ams-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(143, 117, 248, 0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.ams-box {
+  background-color: #08080c;
+  border: 1px solid #161622;
+  border-radius: 24px;
+  padding: 45px 35px 35px 35px;
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 50px rgba(143, 117, 248, 0.04);
+}
+
+.ams-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.ams-icon {
+  width: 58px;
+  height: 58px;
+  background-color: #0c0c14;
+  border: 1px solid #232338;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8f75f8;
+  font-size: 22px;
+  box-shadow: 0 0 20px rgba(143, 117, 248, 0.25), inset 0 0 10px rgba(143, 117, 248, 0.15);
+}
+
+.ams-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.ams-header h1 {
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.ams-header p {
+  color: #4a4a6a;
+  font-family: 'JetBrains Mono', monospace, sans-serif !important;
+  font-size: 8px;
+  letter-spacing: 3px;
+}
+
+.ams-form-group {
+  margin-bottom: 20px;
+}
+
+.ams-form-group label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace, sans-serif !important;
+  font-size: 9px;
+  color: #4a4a6a;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.ams-input-wrapper {
+  position: relative;
+}
+
+.ams-input {
+  width: 100%;
+  background-color: #0c0c12;
+  border: 1px solid #161624;
+  color: #ffffff;
+  padding: 14px 16px;
+  padding-right: 40px;
+  border-radius: 12px;
+  outline: none;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.ams-input:focus {
+  border-color: #8f75f8;
+  box-shadow: 0 0 0 1px #8f75f8, 0 0 15px rgba(143, 117, 248, 0.15);
+}
+
+.ams-input::placeholder {
+  color: #3a3a54;
+}
+
+.ams-input-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #3a3a54;
+  font-size: 14px;
+}
+
+.ams-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #8f75f8, #6d4ef2);
+  border: none;
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 30px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(109, 78, 242, 0.45);
+}
+
+.ams-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(109, 78, 242, 0.6);
+}
+
+.ams-footer {
+  text-align: center;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ams-footer a {
+  color: #4a4a6a;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ams-footer a:hover {
+  color: #ffffff;
+}

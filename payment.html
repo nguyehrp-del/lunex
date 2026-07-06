@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin thanh toán - LUNEX STORE</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #0b0b13; /* Very dark purple/blue background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .payment-container {
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .btn-back {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        .payment-card {
+            background-color: #12121a;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 40px rgba(139, 92, 246, 0.05);
+        }
+
+        .success-banner {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .info-box {
+            background: #191924;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 10px 25px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .info-value {
+            font-weight: 600;
+            font-size: 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .highlight-blue {
+            color: #8b5cf6;
+            font-weight: 700;
+        }
+
+        .copy-btn {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #a855f7;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(139, 92, 246, 0.3);
+        }
+
+        .timer-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #f59e0b;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .bank-title {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+
+        .qr-box {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .qr-box img {
+            width: 100%;
+            max-width: 250px;
+            margin: 0 auto 15px auto;
+            display: block;
+        }
+
+        .qr-box p {
+            color: #666;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .btn-check-status {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-waiting {
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .status-waiting .icon {
+            color: #f59e0b;
+            font-size: 20px;
+        }
+        
+        .status-waiting .text h3 {
+            color: #f59e0b;
+            margin: 0 0 8px 0;
+            font-size: 16px;
+        }
+        
+        .status-waiting .text p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .download-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .download-box i.fa-circle-info {
+            color: #10b981;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .download-box h3 {
+            color: #10b981;
+            margin: 0 0 15px 0;
+            font-size: 18px;
+        }
+
+        .download-box p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn-download {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+    </style>
+<script src="security.js"></script>
+</head>
+<body>
+    <div class="payment-container">
+        <a href="index.html" class="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Quay lại
+        </a>
+
+        <div class="payment-card">
+            <div class="success-banner">
+                <i class="fa-solid fa-circle-check"></i> Äơn hàng đã được tạo thành công!
+            </div>
+
+            <h2 class="section-title">Thông tin thanh toán</h2>
+
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label">Mã đơn hàng</span>
+                    <div class="info-value">
+                        <span class="highlight-blue" id="disp-order-id">DH127DCFDE</span>
+                        <button class="copy-btn" onclick="copyText('disp-order-id')"><i class="fa-regular fa-copy"></i> Copy</button>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Tài khoản</span>
+                    <span class="info-value" id="disp-username">hiepdz</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Sản phẩm</span>
+                    <span class="info-value" id="disp-product">ModMenu ADR</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Số tiá»n</span>
+                    <span class="info-value highlight-blue" style="font-size: 18px;" id="disp-total">15.000 đ</span>
+                </div>
+            </div>
+
+            <div class="timer-box">
+                <i class="fa-solid fa-hourglass-half"></i> Vui lòng thanh toán trong <span id="timer" style="margin-left: 5px;">15:00</span>
+            </div>
+
+            <div class="bank-title" id="bank-title-text">
+                <i class="fa-solid fa-building-columns"></i> Chuyển khoản ngân hàng
+            </div>
+
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="info-label" id="bank-label-name">Ngân hàng</span>
+                    <span class="info-value" id="disp-bank-name">MB Bank</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label" id="bank-label-stk">Số tài khoản</span>
+                    <div class="info-value">
+                        <span id="disp-stk">01027052006</span>
+                        <button class="copy-btn" onclick="copyText('disp-stk')"><i class="fa-regular fa-copy"></i> Copy</button>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Chủ tài khoản</span>
+                    <span class="info-value" id="disp-owner-name">NGUYEN NHAT HUY</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Số tiá»n</span>
+                    <div class="info-value highlight-blue" style="font-size: 18px;">
+                        <span id="disp-total-2">15.000 đ</span>
+                        <button class="copy-btn" onclick="copyText('disp-total-2')"><i class="fa-regular fa-copy"></i> Copy</button>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Nội dung CK</span>
+                    <div class="info-value" style="color: #ef4444;">
+                        <span id="disp-content">DH127DCFDE</span>
+                        <button class="copy-btn" onclick="copyText('disp-content')"><i class="fa-regular fa-copy"></i> Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="qr-box">
+                <img src="https://vietqr.net/portal/v1/qr/image?accountNo=01027052006&accountName=NGUYEN%20NHAT%20HUY&acqId=970422&amount=15000&addInfo=DH127DCFDE" alt="VietQR" id="qr-img">
+                <p>Quét mã QR để thanh toán nhanh</p>
+            </div>
+
+            <div class="warning-box">
+                <i class="fa-solid fa-triangle-exclamation" style="margin-top: 3px;"></i>
+                <div>
+                    <strong>Lưu ý:</strong> Nhập chính xác nội dung <strong id="disp-warning-content">DH127DCFDE</strong> khi chuyển khoản để hệ thống tự động xử lý đơn hàng
+                </div>
+            </div>
+
+            <button class="btn-check-status" onclick="checkStatus()">
+                <i class="fa-solid fa-magnifying-glass"></i> Kiểm tra trạng thái đơn hàng
+            </button>
+
+            <div class="status-waiting">
+                <i class="fa-solid fa-clock icon"></i>
+                <div class="text">
+                    <h3>Äang chá» thanh toán...</h3>
+                    <p>Hệ thống sẽ tự cập nhật khi nhận được thanh toán.</p>
+                </div>
+            </div>
+
+            <div class="download-box">
+                <i class="fa-solid fa-circle-info"></i>
+                <h3>Download Sản Phẩm</h3>
+                <p>Sau khi thanh toán thành công, bạn có thể tải xuống sản phẩm tại đây hoặc trong mục "Keys của tôi"</p>
+                <a href="#" class="btn-download" onclick="alert('Vui lòng thanh toán trước khi tải xuống!')">
+                    <i class="fa-solid fa-cloud-arrow-down"></i> Tải xuống <span id="disp-download-name">ModMenu ADR</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderStr = localStorage.getItem('zermango_current_order');
+            if(!orderStr) {
+                alert('Không tìm thấy đơn hàng. Äang quay lại cửa hàng...');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            const order = JSON.parse(orderStr);
+            
+            if (order.type === 'deposit') {
+                const dlBox = document.querySelector('.download-box');
+                if (dlBox) dlBox.style.display = 'none';
+            }
+            
+            const formatMoney = (amount) => new Intl.NumberFormat('vi-VN').format(amount);
+            
+            // Render Order Info
+            document.getElementById('disp-order-id').textContent = order.orderId;
+            document.getElementById('disp-username').textContent = order.username || (order.email ? order.email.replace('@gmail.com', '') : '');
+            document.getElementById('disp-product').textContent = order.productName;
+            document.getElementById('disp-total').textContent = formatMoney(order.total) + ' đ';
+            
+            // Render Bank Info
+            document.getElementById('disp-total-2').textContent = formatMoney(order.total) + ' đ';
+            document.getElementById('disp-content').textContent = order.orderId;
+            document.getElementById('disp-warning-content').textContent = order.orderId;
+            
+            const dispDlName = document.getElementById('disp-download-name');
+            if (dispDlName) dispDlName.textContent = order.productName;
+            
+            // Update QR code dynamically and banking labels
+            if (order.type === 'deposit') {
+                document.getElementById('qr-img').src = 'zalopay_qr.png';
+                document.getElementById('bank-title-text').innerHTML = '<i class="fa-solid fa-wallet"></i> Chuyển tiá»n qua ví ZaloPay';
+                document.getElementById('bank-label-name').textContent = 'á»¨ng dụng';
+                document.getElementById('disp-bank-name').textContent = 'Ví điện tử ZaloPay';
+                document.getElementById('bank-label-stk').textContent = 'Số điện thoại';
+                document.getElementById('disp-stk').textContent = '0845166377';
+                document.getElementById('disp-owner-name').textContent = 'HUYNH THI NGOC LOI';
+            } else {
+                const qrUrl = `https://img.vietqr.io/image/970422-01027052006-compact.png?amount=${order.total}&addInfo=${order.orderId}&accountName=NGUYEN%20NHAT%20HUY`;
+                document.getElementById('qr-img').src = qrUrl;
+            }
+            
+            // Calculate remaining time
+            const now = Date.now();
+            let remainingSeconds = 15 * 60; // fallback
+            if (order.expiresAt) {
+                if (now >= order.expiresAt) {
+                    alert("Äã hết thá»i gian thanh toán! Äơn hàng không thành công.");
+                    window.location.href = 'index.html';
+                    return;
+                }
+                remainingSeconds = Math.floor((order.expiresAt - now) / 1000);
+            }
+            
+            startTimer(remainingSeconds);
+        });
+
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).textContent.replace(' đ', '');
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Äã copy: ' + text);
+            });
+        }
+        
+        function checkStatus() {
+            const btn = document.querySelector('.btn-check-status');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Äang kiểm tra...';
+            
+            setTimeout(async () => {
+                btn.innerHTML = originalHTML;
+                
+                const orderStr = localStorage.getItem('zermango_current_order');
+                if(!orderStr) return;
+                const order = JSON.parse(orderStr);
+                
+                const genKey = () => 'ZMG-' + Math.random().toString(36).substring(2,7).toUpperCase() + '-' + Math.random().toString(36).substring(2,7).toUpperCase() + '-' + Math.random().toString(36).substring(2,7).toUpperCase();
+                const keysList = [genKey()];
+
+                const userStr = localStorage.getItem('zermango_user');
+                if (userStr) {
+                    const currentUser = JSON.parse(userStr);
+                    currentUser.purchasedKeys = currentUser.purchasedKeys || [];
+                    
+                    if (order.type === 'deposit') {
+                        // Send Telegram Notification for QR Deposit
+                        const tgMsg = `ðŸ”” <b>YÃŠU Cáº¦U Náº P TIá»€N QUA QR</b> ðŸ””\nâ”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”\nðŸ‘¤ <b>Tài khoản:</b> <code>${currentUser.username}</code>\nðŸ’° <b>Số tiá»n nạp:</b> <code>${new Intl.NumberFormat('vi-VN').format(order.total)} đ</code>\nðŸ†” <b>Mã đơn hàng:</b> <code>${order.orderId}</code>\nðŸ“… <b>Thá»i gian:</b> ${new Date().toLocaleString()}`;
+                        const token = '8939024855:AAGvMMZlJswAkQNAeKIVyCsyc2NDrBNBGI0';
+                        const chatId = '8866660133';
+                        
+                        const replyMarkup = {
+                            inline_keyboard: [
+                                [
+                                    { text: "Duyệt Tiá»n âœ…", callback_data: `QRDEP_APP_${order.orderId}_${order.total}_${currentUser.username}` },
+                                    { text: "Huỷ âŒ", callback_data: `QRDEP_REJ_${order.orderId}_${currentUser.username}` }
+                                ]
+                            ]
+                        };
+
+                        try {
+                            await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    chat_id: chatId,
+                                    text: tgMsg,
+                                    parse_mode: 'HTML',
+                                    reply_markup: replyMarkup
+                                })
+                            });
+                        } catch (err) {
+                            console.error(err);
+                        }
+
+                        // Deposit balance flow (Require Telegram Admin Approval)
+                        alert(`Yêu cầu nạp tiá»n đã được gửi tới Admin!\n\nSố dư của bạn sẽ được tự động cộng thêm ${new Intl.NumberFormat('vi-VN').format(order.total)} đ ngay sau khi Admin duyệt giao dịch trên hệ thống.\nBạn có thể quay lại trang chủ để tiếp tục sử dụng.`);
+                    } else {
+                        // Product purchase flow
+                        currentUser.purchasedKeys.push({
+                            productName: order.productName,
+                            keys: keysList,
+                            total: order.total,
+                            date: new Date().toLocaleString(),
+                            paymentMethod: 'Banking'
+                        });
+                        localStorage.setItem('zermango_user', JSON.stringify(currentUser));
+                        
+                        const users = JSON.parse(localStorage.getItem('zermango_users') || '[]');
+                        const uIdx = users.findIndex(u => u.username === currentUser.username);
+                        if (uIdx !== -1) {
+                            users[uIdx].purchasedKeys = currentUser.purchasedKeys;
+                            localStorage.setItem('zermango_users', JSON.stringify(users));
+                        }
+
+                        const products = JSON.parse(localStorage.getItem('zermango_products') || '[]');
+                        const prod = products.find(p => p.name === order.productName);
+                        if (prod) {
+                            if (prod.keys > 0) prod.keys -= 1;
+                            prod.sold = (prod.sold || 0) + 1;
+                            localStorage.setItem('zermango_products', JSON.stringify(products));
+                        }
+
+                        alert(`Thanh toán thành công qua chuyển khoản ngân hàng!\n\nSản phẩm: ${order.productName}\nMã giao dịch: ${order.orderId}\nSố tiá»n: ${new Intl.NumberFormat('vi-VN').format(order.total)} đ\n\nKey kích hoạt của bạn:\n${keysList.join('\n')}`);
+                    }
+                }
+                
+                localStorage.removeItem('zermango_current_order');
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+
+        function startTimer(duration) {
+            let timer = duration, minutes, seconds;
+            const display = document.getElementById('timer');
+            
+            const interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    display.textContent = "00:00";
+                    alert("Äã hết thá»i gian thanh toán! Äơn hàng không thành công.");
+                    window.location.href = 'index.html';
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
